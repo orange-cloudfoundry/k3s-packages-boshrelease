@@ -20,5 +20,7 @@ function addBlobOnChecksumChange() {
 
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s k3s/k3s
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s-airgap-images-amd64.tar k3s-images/k3s-airgap-images-amd64.tar
+chmod ugo+x src/github.com/kubernetes/kubectl/kubectl
+addBlobOnChecksumChange src/github.com/kubernetes/kubectl/kubectl kubectl/kubectl
 
 
