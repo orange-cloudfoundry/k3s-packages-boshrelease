@@ -31,9 +31,27 @@ chmod ugo+x src/github.com/kubernetes/kubectl/kubectl
 addBlobOnChecksumChange src/github.com/kubernetes/kubectl/kubectl kubectl/kubectl
 
 
+# Inspired by https://github.com/orange-cloudfoundry/bosh-release-action/blob/8732ff085712d9980fc66e50892cb9c3d7a3f884/entrypoint.sh#L48-L58
+function configureS3BlobStore() {
+  if [ ! -z "${AWS_BOSH_ACCES_KEY_ID}" ]; then
+    cat - > config/private.yml <<EOS
+  ---
+  blobstore:
+    options:
+      access_key_id: ${AWS_BOSH_ACCES_KEY_ID}
+      secret_access_key: ${AWS_BOSH_SECRET_ACCES_KEY}
+EOS
+  else
+    echo "::warning::AWS_BOSH_ACCES_KEY_ID not set, skipping config/private.yml"
+  fi
+}
+
+
 if [ "${NEW_BLOBS_WERE_ADDED}" == "true" ] ; then
   echo "Current blobs before upload"
   bosh blobs
+
+  configureS3BlobStore
   # See https://bosh.io/docs/release-blobs/#saving-blobs
   bosh upload-blobs
 
