@@ -40,6 +40,15 @@
       //separateMultipleMinor: true, // Pending merge of https://github.com/renovatebot/renovate/pull/24538 to be effective
     },
     {
+      description: 'Only ask for patch updates for k8s releases',
+      matchPaths: [
+        'vendir.yml',
+      ],
+      //See https://github.com/renovatebot/renovate/discussions/15861
+      "matchUpdateTypes": ["minor"],
+      "enabled": false
+    },
+    {
       description: 'Auto-merge patch releases, e.g. from 1.25.1 to 1.25.2',
       matchPackageNames: [
         'k3s-io/k3s',
