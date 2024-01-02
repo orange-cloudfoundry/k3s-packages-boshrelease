@@ -66,6 +66,8 @@ jobs:
           git config --global --add safe.directory /github/workspace
           export VENDIR_GITHUB_API_TOKEN="${GITHUB_TOKEN}"
           ./vendor.sh
+          echo "State after vendir:"
+          tree -s src
           git add vendir.lock
           # FIXME: optimize for idempotency 
           ./addblob.sh
