@@ -40,6 +40,18 @@
       //separateMultipleMinor: true, // Pending merge of https://github.com/renovatebot/renovate/pull/24538 to be effective
     },
     {
+      description: 'Auto-merge patch releases, e.g. from 1.25.1 to 1.25.2',
+      matchPackageNames: [
+        'k3s-io/k3s',
+        'kubernetes/kubernetes'
+      ],
+
+      //see https://docs.renovatebot.com/key-concepts/automerge/#automerge-non-major-updates
+      "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "!/-rc/", // exclude release candidate from automerge
+      "automerge": true
+    },
+    {
       description: "Add common labels",
       matchDepPatterns: ["*"],
       addLabels: [
