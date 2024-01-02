@@ -32,6 +32,12 @@ addBlobOnChecksumChange src/github.com/kubernetes/kubectl/kubectl kubectl/kubect
 
 
 if [ "${NEW_BLOBS_WERE_ADDED}" == "true" ] ; then
+  echo "Current blobs before upload"
+  bosh blobs
   # See https://bosh.io/docs/release-blobs/#saving-blobs
   bosh upload-blobs
+
+  echo "Current blobs after upload"
+  bosh blobs
+
 fi
