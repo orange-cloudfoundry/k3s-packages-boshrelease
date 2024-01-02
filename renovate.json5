@@ -4,6 +4,10 @@
     'config:base',
     ':disableRateLimiting',
   ],
+  enabledManagers: [
+    "github-actions",
+    "regexp"
+  ],
   ignorePaths: [
     'packages/**',
     'releases/**',
