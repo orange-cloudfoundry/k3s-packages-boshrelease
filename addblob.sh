@@ -35,11 +35,11 @@ addBlobOnChecksumChange src/github.com/kubernetes/kubectl/kubectl kubectl/kubect
 function configureS3BlobStore() {
   if [ ! -z "${AWS_BOSH_ACCES_KEY_ID}" ]; then
     cat - > config/private.yml <<EOS
-  ---
-  blobstore:
-    options:
-      access_key_id: ${AWS_BOSH_ACCES_KEY_ID}
-      secret_access_key: ${AWS_BOSH_SECRET_ACCES_KEY}
+---
+blobstore:
+  options:
+    access_key_id: ${AWS_BOSH_ACCES_KEY_ID}
+    secret_access_key: ${AWS_BOSH_SECRET_ACCES_KEY}
 EOS
   else
     echo "::warning::AWS_BOSH_ACCES_KEY_ID not set, skipping config/private.yml"
