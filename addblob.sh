@@ -13,6 +13,8 @@ function addBlobOnChecksumChange() {
   src_checksum=$(cat "${src}"  | sha256sum |  cut -d " " -f1)
   if [ "${blob_checksum}" != "sha256:${src_checksum}" ] || [ "$blob_object_id" = "null" ]; then
     bosh add-blob ${src} ${target}
+    # See https://bosh.io/docs/release-blobs/#saving-blobs
+    bosh upload-blobs
   else
     echo "skipping blob creation for ${target} with existing checksum: ${src_checksum}"
   fi
