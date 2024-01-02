@@ -10,8 +10,10 @@ on:
       - '[0-9]+.[0-9]+' # tag format currently used by k3s-bosh-release: e.g. 124.12
       - '[0-9]+.[0-9]+.[0-9]+'
       - '[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
+      # Should match:
       # v1.24.17+k3s1
-      - 'v[0-9]+.[0-9]+.[0-9]+.*'
+      # See doc at https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   build:
