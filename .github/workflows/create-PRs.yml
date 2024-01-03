@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install bosh-cli
+      - name: Install gh-cli
         #See https://github.com/marketplace/actions/install-a-binary-from-github-releases
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
