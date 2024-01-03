@@ -86,32 +86,92 @@ jobs:
           if [ -d blobs ];then # The blobs dir is only present when a blob is modified or has not yet been published.
             tree -s blobs
           fi
-      
 
-      # TODO: optimize to only create a dev release if the blobs.yaml file has some changes
-      # Possibly by setting an env var and checking it into next step
-      # See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
-      # and if clause https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsif
-      - name: create bosh dev release
-        id: create-bosh-release
-        uses: orange-cloudfoundry/bosh-release-action@v2 # will create dev release when pushed git ref is not a tag
+      - name: create bosh final release inlined
         with:
           target_branch: ${{github.ref_name}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AWS_BOSH_ACCES_KEY_ID: ${{ secrets.AWS_BOSH_ACCES_KEY_ID }}
           AWS_BOSH_SECRET_ACCES_KEY: ${{ secrets.AWS_BOSH_SECRET_ACCES_KEY }}
-
-      # See https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
-      # This creates a zip file containing the k3s-master.tgz file
-
-      # See https://github.com/actions/upload-artifact#zipped-artifact-downloads
-      # > There is currently no way to download artifacts after a workflow run finishes in a format other than a zip or
-      # > to download artifact contents individually. One of the consequences of this limitation is that if a zip is
-      # > uploaded during a workflow run and then downloaded from the UI, there will be a double zip created.
-      - name: Archive bosh dev release tgz
-        uses: actions/upload-artifact@v3
+        run: |
+          set -x # enable traces
+          # extract info from vendir
+          version=$(yq -r '.directories[0].contents[] | select (.path=="k3s-io/k3s") | .githubRelease.tag ' ./vendir.yml)
+          version=${version#v}
+          release=true
+          
+          name=$(yq -r .final_name config/final.yml)
+          if [ "${name}" = "null" ]; then
+            name=$(yq -r .name config/final.yml)
+          fi
+          
+          remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_SERVER_URL#https://}/${GITHUB_REPOSITORY}.git"
+          
+          # configure git
+          git config --global user.name "actions/bosh-releaser@v2"
+          git config --global user.email "<>"
+          git config --global --add safe.directory /github/workspace
+          
+          # if [ ! -z "${INPUT_BUNDLE}" ] && [ "${INPUT_BUNDLE}" != "false" ]; then
+          #   echo "installing bundle: ${INPUT_BUNDLE}"
+          #   apk add ruby
+          #   gem install bundler -v "${INPUT_BUNDLE}"
+          # fi
+          
+          # remove existing release if any
+          if [ -f releases/${name}/${name}-${version}.yml ]; then
+            echo "removing pre-existing version ${version}"
+            yq -r -y "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
+            mv tmp releases/${name}/index.yml
+            rm -f releases/${name}/${name}-${version}.yml
+            git commit -a -m "reset release ${version}"
+          fi
+          
+          echo "creating bosh release: ${name}-${version}.tgz"
+          bosh create-release --force --final --version=${version} --tarball=${name}-${version}.tgz
+          
+          echo "pushing changes to git repository"
+          git add .final_builds
+          git add releases/${name}/index.yml
+          git add releases/${name}/${name}-${version}.yml
+          git commit -a -m "cutting release ${version}"
+          
+          # Override any existing tag with same version. This may happen if only part of the renovate PRs were merged
+          git tag -a -m "cutting release ${version}" ${version} -f
+          git push ${remote_repo} HEAD:${INPUT_TARGET_BRANCH}
+          
+          # Delete any existing release with same tag. Ignore push failure if no tag exists.
+          git push --delete ${remote_repo} ${version}
+          
+          # Push the tag
+          git push ${remote_repo} ${version} --force
+          
+          # make asset readable outside docker image
+          chmod 644 ${name}-${version}.tgz
+          # TODO: update this deprecated github action syntax
+          echo "::set-output name=file::${name}-${version}.tgz"
+          echo "::set-output name=version::${version}"
+          
+      - name: create github release
+        id: create-github-release
+        if: success() && startsWith(github.ref, 'refs/tags/')
+        uses: actions/create-release@v1
         with:
-          name: archive-bosh-dev-release-tgz
-          path: |
-            k3s-*.tgz
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: "cutting release ${{ steps.create-bosh-release.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: upload-assets
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
+          asset_path: ./${{ steps.create-bosh-release.outputs.file }}
+          asset_name: ${{ steps.create-bosh-release.outputs.file }}
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
