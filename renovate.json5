@@ -6,7 +6,7 @@
   ],
   enabledManagers: [
     "github-actions",
-    "regexp"
+    "regex"
   ],
   ignorePaths: [
     'packages/**',
