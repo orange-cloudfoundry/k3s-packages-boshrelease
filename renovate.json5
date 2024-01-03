@@ -40,7 +40,7 @@
       //separateMultipleMinor: true, // Pending merge of https://github.com/renovatebot/renovate/pull/24538 to be effective
     },
     {
-      description: 'Only ask for patch updates for k8s releases',
+      description: 'Only ask for patch updates for k8s releases, ie. disable getting minor updates',
       matchPaths: [
         'vendir.yml',
       ],
@@ -58,7 +58,9 @@
       //see https://docs.renovatebot.com/key-concepts/automerge/#automerge-non-major-updates
       "matchUpdateTypes": ["patch"],
       "matchCurrentVersion": "!/-rc/", // exclude release candidate from automerge
-      "automerge": true
+      "automerge": true,
+      //see https://docs.renovatebot.com/key-concepts/automerge/#absence-of-tests
+      ignoreTests: true
     },
     {
       description: "Add common labels",
