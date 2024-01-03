@@ -14,6 +14,7 @@ on:
       - jobs/**
       - releases/**
       - vendir.yml
+      - .github/workflows/on-commits.yml
 
 jobs:
   build:
@@ -171,6 +172,7 @@ jobs:
         with:
           tag: ${{ steps.create-bosh-release.outputs.version }}
           allowUpdates: true # > indicates if we should update a release if it already exists.
+          omitDraftDuringUpdate: true # > Indicates if the draft flag should be omitted during updates. The draft flag will still be applied for newly created releases. This will preserve the existing draft state during updates.
           generateReleaseNotes: true
           artifacts: ./${{ steps.create-bosh-release.outputs.file }}
           artifactContentType: application/zip
