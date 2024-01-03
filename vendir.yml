@@ -15,6 +15,6 @@ directories:
       assetNames: # only download specific assets (optional; v0.12.0+). We use assetNames inside githubRelease instead of
       # includePaths at path level. Using includePaths downloads all assets and filter after.
       - "k3s"
-      - "k3s-airgap-images-amd64.tar"
+      - "k3s-airgap-images-amd64.tar.gz"
     # includePaths: # includes paths specify what should be included. by default all paths are included (optional)
 
