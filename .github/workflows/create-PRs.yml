@@ -1,0 +1,51 @@
+name: create-PRs-based-on-release-branches
+
+on:
+  workflow_dispatch:
+
+  create:
+    branches:
+      - release-*
+      # See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+      # *: Matches zero or more characters, but does not match the / character. For example, Octo* matches Octocat.
+      # **: Matches zero or more of any character.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install bosh-cli
+        #See https://github.com/marketplace/actions/install-a-binary-from-github-releases
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: https://github.com/cli/cli
+          tag: v2.40.1
+          extension-matching: disable
+          cache: enable
+          chmod: 0755
+          rename-to: gh
+
+      - name: Install yq cli
+        #See https://github.com/marketplace/actions/install-a-binary-from-github-releases
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: mikefarah/yq
+          tag: v4.34.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # reduce potential rate limiting
+
+      - name: create-missing-PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # configure git
+          git config --global user.name "actions/k3s-boshrelease"
+          git config --global user.email "<>"
+          git config --global --add safe.directory /github/workspace
+          ./create-missing-PR.bash
+
