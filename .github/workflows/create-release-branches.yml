@@ -1,0 +1,50 @@
+name: create-release-branches
+
+on:
+  workflow_call:
+    inputs:
+      force_push:
+        description: 'Force recreation of release branches from min version'
+        required: true
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      force_push:
+        description: 'Force recreation of release branches from min version'
+        required: true
+        type: boolean
+        default: false
+  schedule:
+    - cron: "30 10 * * 1" # “At 10:30 on Monday.” https://crontab.guru/#30_10_*_*_1
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # GH cli is already pre-install, see https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
+
+      - name: Install yq cli
+        #See https://github.com/marketplace/actions/install-a-binary-from-github-releases
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: mikefarah/yq
+          tag: v4.34.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # reduce potential rate limiting
+
+      - name: create-missing-branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE_PUSH: ${{ inputs.force_push}}
+        run: |
+          # configure git
+          git config --global user.name "actions/k3s-boshrelease"
+          git config --global user.email "<>"
+          git config --global --add safe.directory /github/workspace
+          ./create-release-branches.bash
+
