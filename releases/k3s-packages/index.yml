@@ -1,2 +1,4 @@
-builds: {}
+builds:
+  8046f56e-d7e7-442b-5c12-fee45110a2ed:
+    version: 1.24.17+k3s1
 format-version: "2"
