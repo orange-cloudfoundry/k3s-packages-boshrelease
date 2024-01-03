@@ -7,18 +7,6 @@ directories:
 
 - path: src/github.com
   contents:
-
-  # validates checksums automatically from release notes
-  - path: kubernetes/kubectl
-    githubRelease:
-      slug: kubernetes/kubernetes
-      tag: v1.24.17
-      disableAutoChecksumValidation: true
-      http:
-        # The url parameter of http can interpolate the tag of the GitHub release using the {tag} token.
-        url: https://dl.k8s.io/release/{tag}/bin/linux/amd64/kubectl
-    permission: 0755
-
   - path: k3s-io/k3s
     githubRelease:
       slug: k3s-io/k3s

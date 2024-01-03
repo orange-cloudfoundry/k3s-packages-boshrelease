@@ -27,8 +27,6 @@ function addBlobOnChecksumChange() {
 
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s k3s/k3s
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s-airgap-images-amd64.tar k3s-images/k3s-airgap-images-amd64.tar
-chmod ugo+x src/github.com/kubernetes/kubectl/kubectl
-addBlobOnChecksumChange src/github.com/kubernetes/kubectl/kubectl kubectl/kubectl
 
 
 # Inspired by https://github.com/orange-cloudfoundry/bosh-release-action/blob/8732ff085712d9980fc66e50892cb9c3d7a3f884/entrypoint.sh#L48-L58
