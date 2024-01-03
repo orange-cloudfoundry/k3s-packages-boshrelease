@@ -28,7 +28,6 @@ for ref in $(listK3sRepoBranches) ; do
   else
     echo "Keeping $v as $v > $MIN_VERSION"
   fi
-  continue
   if [ "$FORCE_PUSH" = "true" ] ;then
     git branch -d "$BRANCH_NAME"
   fi
