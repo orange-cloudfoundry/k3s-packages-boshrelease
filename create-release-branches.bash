@@ -31,14 +31,14 @@ for ref in $(listK3sRepoBranches) ; do
   if [ "$FORCE_PUSH" = "true" ] ;then
     git branch -d "$BRANCH_NAME"
   fi
-  git co -b "$BRANCH_NAME"
+  git checkout -b "$BRANCH_NAME"
   sed -i.orig "s/tag: v.*/tag: v${v}.0/g" vendir.yml
   diff vendir.yml vendir.yml.orig
   rm vendir.yml.orig
   git add vendir.yml
   git commit -m "Initial branch creation for k8s version $v"
   git push --set-upstream origin "$BRANCH_NAME" $PUSH_OPTIONS
-  git co master
+  git checkout master
 done
 
 git branch
