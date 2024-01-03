@@ -44,12 +44,13 @@ EOS
   fi
 }
 
+echo "Configuring S3 blobstore systematically: S3 credential are required during the bosh create-release to download the blobs"
+configureS3BlobStore
 
 if [ "${NEW_BLOBS_WERE_ADDED}" == "true" ] ; then
   echo "Current blobs before upload"
   bosh blobs
 
-  configureS3BlobStore
   # See https://bosh.io/docs/release-blobs/#saving-blobs
   bosh upload-blobs
 
