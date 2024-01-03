@@ -88,6 +88,7 @@ jobs:
           fi
 
       - name: create bosh final release
+        id: create-bosh-release
         env:
           INPUT_TARGET_BRANCH: ${{github.ref_name}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -148,16 +149,16 @@ jobs:
           
           # make asset readable outside docker image
           chmod 644 ${name}-${version}.tgz
-          # TODO: update this deprecated github action syntax
-          echo "::set-output name=file::${name}-${version}.tgz"
-          echo "::set-output name=version::${version}"
-          
+          # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
+          echo "file=${name}-${version}.tgz" >> $GITHUB_OUTPUT
+          echo "version=${version}"          >> $GITHUB_OUTPUT
+
       - name: create github release
         id: create-github-release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: ${{ steps.create-bosh-release.outputs.version }}
+          release_name: ${{ steps.create-bosh-release.outputs.version }}
           body: "cutting release ${{ steps.create-bosh-release.outputs.version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
