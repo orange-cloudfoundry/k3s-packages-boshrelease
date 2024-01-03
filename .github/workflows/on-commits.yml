@@ -159,6 +159,7 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           tag: ${{ steps.create-bosh-release.outputs.version }}
+          allowUpdates: true # > indicates if we should update a release if it already exists.
           generateReleaseNotes: true
           artifacts: ./${{ steps.create-bosh-release.outputs.file }}
           artifactContentType: application/zip
