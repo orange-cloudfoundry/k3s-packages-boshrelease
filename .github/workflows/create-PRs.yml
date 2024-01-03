@@ -25,8 +25,6 @@ jobs:
         with:
           repo: cli/cli
           tag: v2.40.1
-          chmod: 0755
-          rename-to: gh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # reduce potential rate limiting
 
