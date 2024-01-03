@@ -14,11 +14,16 @@ current_version=$(yq -r '.directories[0].contents[] | select (.path=="k3s-io/k3s
 current_version=${current_version#v}
 MIN_VERSION=$(echo "$current_version"|cut -d'.' -f1-2)
 
-function listK3sRepoBranches() {
-  git ls-remote -h https://github.com/k3s-io/k3s "release-*" | sed 's/refs\/heads\///' | awk '{print $2}'
+function listK3sReleases() {
+  # Initialize release list using branches (it easy to get old releases)
+  git ls-remote -h https://github.com/k3s-io/k3s "release-*" | sed 's/refs\/heads\///' | awk '{print $2}' >.git/k3s-releases.lst
+  # Use k3s github releases to ensure latest releases is included
+  gh release list -R k3s-io/k3s --exclude-drafts --exclude-pre-releases -L 20|cut -d'.' -f1-2|sort|uniq|sed s/v/release-/ >>.git/k3s-releases.lst
+  # Remove duplicates
+  cat .git/k3s-releases.lst|sort|uniq
 }
 
-for ref in $(listK3sRepoBranches) ; do
+for ref in $(listK3sReleases) ; do
   v=${ref#release-}
   BRANCH_NAME="${ref}"
   echo "Extracted values - v: $v - BRANCH_NAME: $BRANCH_NAME"
