@@ -129,7 +129,7 @@ jobs:
           fi
           
           echo "creating bosh release: ${name}-${version}.tgz"
-          bosh create-release --force --final --version=${version} --tarball=${name}-${version}.tgz
+          bosh create-release --final --version=${version} --tarball=${name}-${version}.tgz
           
           echo "pushing changes to git repository"
           git add .final_builds
