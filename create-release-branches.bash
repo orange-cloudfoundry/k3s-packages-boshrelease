@@ -10,7 +10,7 @@ for v in 1.25 1.26 1.27 1.28 1.29 1.30 1.31 ; do
   ! diff vendir.yml vendir.yml.orig
   rm vendir.yml.orig
   git add vendir.yml
-  git commit -m "set up release for version $v"
+  git commit -m "Initial branch creation for k8s version $v"
   git push --set-upstream origin $BRANCH_NAME --force
   ! gh pr create --base master --repo orange-cloudfoundry/k3s-packages-boshrelease --fill --body "Track divergence of release branches with master"
   git co master
