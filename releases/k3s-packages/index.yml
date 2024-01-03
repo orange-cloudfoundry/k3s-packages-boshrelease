@@ -1,6 +1,4 @@
 builds:
   ecdeea01-dbec-40be-413f-7a161f2aa74f:
     version: 1.24.17+k3s1.0
-  fbc7481e-5aa0-45bf-4362-f8c514176ed5:
-    version: 1.24.17+k3s1
 format-version: "2"
