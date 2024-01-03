@@ -1,4 +1,4 @@
-name: vendor-add-blob-create-dev-release
+name: create-final-bosh-release
 
 on:
   push:
