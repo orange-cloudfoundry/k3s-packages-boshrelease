@@ -1,0 +1,6 @@
+---
+name: k3s-packages
+
+packages:
+- k3s
+- k3s-images
