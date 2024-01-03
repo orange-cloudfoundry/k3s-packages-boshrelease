@@ -141,7 +141,7 @@ jobs:
           git push ${remote_repo} HEAD:${INPUT_TARGET_BRANCH}
           
           # Delete any existing release with same tag. Ignore push failure if no tag exists.
-          git push --delete ${remote_repo} ${version}
+          ! git push --delete ${remote_repo} ${version}
           
           # Push the tag
           git push ${remote_repo} ${version} --force
