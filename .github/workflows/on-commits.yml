@@ -121,7 +121,7 @@ jobs:
           # remove existing release if any
           if [ -f releases/${name}/${name}-${version}.yml ]; then
             echo "removing pre-existing version ${version}"
-            yq -r -y "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
+            yq -r "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
             mv tmp releases/${name}/index.yml
             rm -f releases/${name}/${name}-${version}.yml
             git commit -a -m "reset release ${version}"
