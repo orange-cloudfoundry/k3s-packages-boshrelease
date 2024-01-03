@@ -1,0 +1,24 @@
+name: k3s-packages
+version: 1.24.17+k3s1
+commit_hash: f85cb54
+uncommitted_changes: false
+packages:
+- name: k3s
+  version: 68ae280a60d525fde827d29f607ded3cba04b62ab7d8a0f823a982214a601ef3
+  fingerprint: 68ae280a60d525fde827d29f607ded3cba04b62ab7d8a0f823a982214a601ef3
+  sha1: sha256:aa8f088a7ea991c6dd0b300d3c60fb1f9cd0083a7514ce2f4304791d301eb75c
+  dependencies: []
+- name: k3s-images
+  version: ee54d82c584dc843cc3d741749812b26b8b654cdfeb14a50a4bc841cd38c890b
+  fingerprint: ee54d82c584dc843cc3d741749812b26b8b654cdfeb14a50a4bc841cd38c890b
+  sha1: sha256:caf5a31d3190b69b41b4f2c5b485fd995b40507f8d479aa65d758ed9d09da717
+  dependencies: []
+- name: kubectl-k3s
+  version: b74ef077527e33cc5769d097ad855b8c2a790c9a7678cbccfc443945bba8b805
+  fingerprint: b74ef077527e33cc5769d097ad855b8c2a790c9a7678cbccfc443945bba8b805
+  sha1: sha256:9e70b05563a9ee7ef4cc34c6af1efc98f19c1b41aa31e4ddaa509b00810c24f6
+  dependencies: []
+license:
+  version: cf0ca1fe65dee9607c7bb9460a3f20835e582cbb7f5b2c3625fba2e21d7e91b9
+  fingerprint: cf0ca1fe65dee9607c7bb9460a3f20835e582cbb7f5b2c3625fba2e21d7e91b9
+  sha1: sha256:5a0c6cb4c9b8df592d111c5147476bde28425851d4f3061dd9958481a381dc12
