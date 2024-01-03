@@ -153,24 +153,16 @@ jobs:
           echo "file=${name}-${version}.tgz" >> $GITHUB_OUTPUT
           echo "version=${version}"          >> $GITHUB_OUTPUT
 
+      # see https://github.com/ncipollo/release-action
       - name: create github release
         id: create-github-release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
-          tag_name: ${{ steps.create-bosh-release.outputs.version }}
-          release_name: ${{ steps.create-bosh-release.outputs.version }}
-          body: "cutting release ${{ steps.create-bosh-release.outputs.version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.create-bosh-release.outputs.version }}
+          generateReleaseNotes: true
+          artifacts: ./${{ steps.create-bosh-release.outputs.file }}
+          artifactContentType: application/zip
+          removeArtifacts: true
+          artifactErrorsFailBuild: true
 
-      - name: upload-assets
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create-github-release.outputs.upload_url }}
-          asset_path: ./${{ steps.create-bosh-release.outputs.file }}
-          asset_name: ${{ steps.create-bosh-release.outputs.file }}
-          asset_content_type: application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
