@@ -87,7 +87,7 @@ jobs:
             tree -s blobs
           fi
 
-      - name: create bosh final release inlined
+      - name: create bosh final release
         env:
           INPUT_TARGET_BRANCH: ${{github.ref_name}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -154,7 +154,6 @@ jobs:
           
       - name: create github release
         id: create-github-release
-        if: success() && startsWith(github.ref, 'refs/tags/')
         uses: actions/create-release@v1
         with:
           tag_name: ${{ github.ref }}
