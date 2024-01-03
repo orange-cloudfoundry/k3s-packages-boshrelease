@@ -128,6 +128,10 @@ jobs:
             git commit -a -m "reset release ${version}"
           fi
           
+          echo "Current AWS config"
+          # This migh be required to download the blobs during the final release of the S3 bucket does not grant permission to anonymous users
+          ls -al config/private.yml
+          
           echo "creating bosh release: ${name}-${version}.tgz"
           bosh create-release --final --version=${version} --tarball=${name}-${version}.tgz
           
