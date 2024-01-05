@@ -28,14 +28,13 @@ jobs:
           remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_SERVER_URL#https://}/${GITHUB_REPOSITORY}.git"
           
           # Note: actions/checkout does not include local branches, see https://github.com/actions/checkout/issues/1017#issuecomment-1344861321
-          git fetch origin 
           # therefore we iterate on remote branches
-          git branch -a 
           git branch -r 
-          RELEASE_BRANCHES=$(git branch -a --list "release-*" | grep release)
+          RELEASE_BRANCHES=$(git branch -r --list "origin/release-*" | grep release)
           for r in ${RELEASE_BRANCHES}; do
-            git co $r
-            git pull --rebase origin $r
+            BRANCH_WITHOUT_PREFIX=${r#/origin}
+            git co ${BRANCH_WITHOUT_PREFIX}
+            git pull --rebase origin ${BRANCH_WITHOUT_PREFIX}
             #git push --force ${remote_repo} HEAD:$r 
           do
           
