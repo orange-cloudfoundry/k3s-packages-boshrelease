@@ -15,7 +15,6 @@ on:
       - releases/**
       - vendir.yml
       - .github/workflows/create-final-bosh-release-on-commits.yml
-      - .github/workflows/rebase-release-branches-on-master-branch-commits.yml # temporary to test this workflow
 
 jobs:
   build:
