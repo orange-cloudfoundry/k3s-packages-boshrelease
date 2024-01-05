@@ -128,7 +128,7 @@ jobs:
           
           # remove existing release if any, and prepare a commit that will be amended next
           # See https://superuser.com/a/360986/299481 for details of the bash array syntax
-          GIT_AMEND_COMMIT_FLAG=(-m "cutting release ${version}")
+          NEXT_GIT_COMMIT_FLAGS=(-m "cutting release ${version}")
           if [ -f releases/${name}/${name}-${version}.yml ]; then
             echo "removing pre-existing version ${version}"
             yq -r "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
