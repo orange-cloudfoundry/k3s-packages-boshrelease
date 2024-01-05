@@ -14,6 +14,7 @@
     'manifests/**',
     'jobs/**',
   ],
+  automergeStrategy: "merge-commit", // use a merge commit so that generated release notes can list the merged PRs
   baseBranches: [
     // don't run on renovate branches
     "$default",
