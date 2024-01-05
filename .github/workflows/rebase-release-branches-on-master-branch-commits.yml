@@ -23,7 +23,7 @@ jobs:
           #pwd
           #find .
           # configure git
-          git config --global user.name "actions/k3s-boshrelease"
+          git config --global user.name "workflows/k3s-boshrelease/rebase-release-branches-on-master-branch-commits"
           git config --global user.email "<>"
           git config --global --add safe.directory /github/workspace
           

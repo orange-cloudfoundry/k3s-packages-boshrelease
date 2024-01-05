@@ -43,7 +43,7 @@ jobs:
           FORCE_PUSH: ${{ inputs.force_push}}
         run: |
           # configure git
-          git config --global user.name "actions/k3s-boshrelease"
+          git config --global user.name "workflows/k3s-boshrelease/create-release-branches"
           git config --global user.email "<>"
           git config --global --add safe.directory /github/workspace
           ./create-release-branches.bash
