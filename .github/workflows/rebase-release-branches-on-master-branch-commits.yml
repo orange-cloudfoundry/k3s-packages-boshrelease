@@ -1,0 +1,40 @@
+name: rebase-release-branches-on-master-branch-commits
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: rebase all release branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_BOSH_ACCES_KEY_ID: ${{ secrets.AWS_BOSH_ACCES_KEY_ID }}
+          AWS_BOSH_SECRET_ACCES_KEY: ${{ secrets.AWS_BOSH_SECRET_ACCES_KEY }}
+        run: |
+          set -x # enable traces
+
+          #pwd
+          #find .
+          # configure git
+          git config --global user.name "actions/k3s-boshrelease"
+          git config --global user.email "<>"
+          git config --global --add safe.directory /github/workspace
+          remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_SERVER_URL#https://}/${GITHUB_REPOSITORY}.git"
+
+          RELEASE_BRANCHES=$(git branch -l | grep release)
+          for r in ${RELEASE_BRANCHES}; do
+            git co $r
+            git pull --rebase origin $r
+            #git push --force ${remote_repo} HEAD:$r 
+          do
+          
+          
+          
