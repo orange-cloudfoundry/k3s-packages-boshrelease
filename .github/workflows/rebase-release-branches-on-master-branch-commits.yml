@@ -35,7 +35,8 @@ jobs:
             BRANCH_WITHOUT_PREFIX=${r#origin/}
             git checkout ${BRANCH_WITHOUT_PREFIX}
             git rebase master
-            #git push --force ${remote_repo} HEAD:$r 
+            git push --force ${remote_repo} 
+            return # test a single branch for now
           done
           
           
