@@ -15,6 +15,11 @@ PRS=$(gh pr list \
   | jq -r '.[].number' )
 echo "first PRs (maxed at ${LIMIT}} to rename are: ${PRS}"
 for p in $PRS; do
+
+  if ! gh --repo orange-cloudfoundry/k3s-packages-boshrelease pr view $p --json title | grep "update dependency" ; then
+    echo "skipping pr $p as it was likely already renamed previously: missing update dependency keyword in title"
+    continue;
+  fi
   gh --repo orange-cloudfoundry/k3s-packages-boshrelease pr edit $p --title "merged renovate PR $p onto a branch forced pushed. renamed to not block new automerges"
   gh --repo orange-cloudfoundry/k3s-packages-boshrelease pr comment $p --body "through rename-previously-merged-renovate-PRs-that-block-automerge.bash: this PR was likely blocking automerge, see https://github.com/orange-cloudfoundry/k3s-packages-boshrelease/pull/52#issuecomment-1876989204 for diagnostics steps"
 done;
