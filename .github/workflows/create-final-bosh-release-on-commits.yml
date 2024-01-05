@@ -165,7 +165,8 @@ jobs:
             
             # Override any existing tag with same version. This may happen if only part of the renovate PRs were merged
             git tag -a -m "cutting release ${version}" ${version} -f
-            git pull --rebase ${remote_repo} ${GITHUB_REF_NAME}
+            # In case a renovate PR was merged in between, try to rebase prior to pushing
+            git pull --rebase 
             git push ${remote_repo} HEAD:${INPUT_TARGET_BRANCH}
             
             # Delete any existing release with same tag. Ignore push failure if no tag exists.
