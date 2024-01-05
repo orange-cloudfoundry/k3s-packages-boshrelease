@@ -33,7 +33,7 @@ jobs:
           RELEASE_BRANCHES=$(git branch -r --list "origin/release-*")
           for r in ${RELEASE_BRANCHES}; do
             BRANCH_WITHOUT_PREFIX=${r#/origin}
-            git co ${BRANCH_WITHOUT_PREFIX}
+            git checkout ${BRANCH_WITHOUT_PREFIX}
             git pull --rebase origin ${BRANCH_WITHOUT_PREFIX}
             #git push --force ${remote_repo} HEAD:$r 
           done
