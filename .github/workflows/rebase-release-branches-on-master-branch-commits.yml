@@ -15,7 +15,7 @@ jobs:
 
       - name: rebase all release branches
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_FOR_REBASE_WORKFLOW }}
         run: |
           set -x # enable traces
 
