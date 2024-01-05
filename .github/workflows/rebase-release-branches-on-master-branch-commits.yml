@@ -16,8 +16,6 @@ jobs:
       - name: rebase all release branches
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AWS_BOSH_ACCES_KEY_ID: ${{ secrets.AWS_BOSH_ACCES_KEY_ID }}
-          AWS_BOSH_SECRET_ACCES_KEY: ${{ secrets.AWS_BOSH_SECRET_ACCES_KEY }}
         run: |
           set -x # enable traces
 
@@ -31,8 +29,8 @@ jobs:
           
           # Note: actions/checkout does not include local branches, see https://github.com/actions/checkout/issues/1017#issuecomment-1344861321
           # therefore we iterate on remote branches
-          git branch -r --list "release-*"
-          RELEASE_BRANCHES=$(git branch -r --list "release-*" | grep release)
+          git branch -a --list "release-*"
+          RELEASE_BRANCHES=$(git branch -a --list "release-*" | grep release)
           for r in ${RELEASE_BRANCHES}; do
             git co $r
             git pull --rebase origin $r
