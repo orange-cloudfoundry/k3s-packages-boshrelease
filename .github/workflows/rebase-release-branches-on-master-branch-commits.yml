@@ -25,6 +25,13 @@ jobs:
           git config --global user.name "actions/k3s-boshrelease"
           git config --global user.email "<>"
           git config --global --add safe.directory /github/workspace
+          
+          #Note: using explicit url to not use github workflow token, otherwise other rebases will he ignored 
+          # See     https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow
+          # > When you use the repository's GITHUB_TOKEN to perform tasks, events triggered by the GITHUB_TOKEN, with the exception of workflow_dispatch 
+          # > and repository_dispatch, will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs. 
+          # > For example, if a workflow run pushes code using the repository's GITHUB_TOKEN, a new workflow will not run even when the repository 
+          # > contains a workflow configured to run when push events occur.
           remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_SERVER_URL#https://}/${GITHUB_REPOSITORY}.git"
           
           # Note: actions/checkout does not include local branches, see https://github.com/actions/checkout/issues/1017#issuecomment-1344861321
@@ -36,7 +43,6 @@ jobs:
             git checkout ${BRANCH_WITHOUT_PREFIX}
             git rebase master
             git push --force ${remote_repo} 
-            return # test a single branch for now
           done
           
           
