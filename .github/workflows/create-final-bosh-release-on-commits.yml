@@ -127,15 +127,16 @@ jobs:
           # fi
           
           # remove existing release if any, and prepare a commit that will be amended next
-          NEXT_GIT_COMMIT_FLAGS='-m "cutting release ${version}"'
+          # See https://superuser.com/a/360986/299481 for details of the bash array syntax
+          GIT_AMEND_COMMIT_FLAG=(-m "cutting release ${version}")
           if [ -f releases/${name}/${name}-${version}.yml ]; then
             echo "removing pre-existing version ${version}"
             yq -r "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
             mv tmp releases/${name}/index.yml
             rm -f releases/${name}/${name}-${version}.yml
             git add releases/${name}/${name}-${version}.yml releases/${name}/index.yml
-            git commit -a ${NEXT_GIT_COMMIT_FLAGS}
-            NEXT_GIT_COMMIT_FLAGS='--amend -m "reset and cutting release ${version}"'
+            git commit -a "${NEXT_GIT_COMMIT_FLAGS[@]}"
+            NEXT_GIT_COMMIT_FLAGS=(--amend -m "cutting release ${version} overriding existing one")
           fi
           
           echo "Current AWS config"
@@ -150,7 +151,7 @@ jobs:
           RELEASE_FILE_NAME=releases/${name}/${name}-${version}.yml
           git add ${RELEASE_FILE_NAME}
           # Note: if we had removed the previous release, then we amend the commit.
-          git commit -a ${NEXT_GIT_COMMIT_FLAGS}
+          git commit -a "${NEXT_GIT_COMMIT_FLAGS[@]}"
           
           echo "Inspecting staged files to skip commit and push if there is no blob changes in the release" 
           if ! git diff --cached ${RELEASE_FILE_NAME} | grep sha1 ; then
