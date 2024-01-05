@@ -29,6 +29,7 @@ jobs:
           git config --global --add safe.directory /github/workspace
           remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_SERVER_URL#https://}/${GITHUB_REPOSITORY}.git"
           
+          git branch --list 
           git branch --list "release-*"
           RELEASE_BRANCHES=$(git branch --list "release-*" | grep release)
           for r in ${RELEASE_BRANCHES}; do
