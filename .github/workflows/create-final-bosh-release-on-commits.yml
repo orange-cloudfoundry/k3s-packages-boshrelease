@@ -126,13 +126,16 @@ jobs:
           #   gem install bundler -v "${INPUT_BUNDLE}"
           # fi
           
-          # remove existing release if any
+          # remove existing release if any, and prepare a commit that will be amended next
+          NEXT_GIT_COMMIT_FLAGS='-m "cutting release ${version}"'
           if [ -f releases/${name}/${name}-${version}.yml ]; then
             echo "removing pre-existing version ${version}"
             yq -r "{ \"builds\": (.builds | with_entries(select(.value.version != \"${version}\"))), \"format-version\": .[\"format-version\"]}" < releases/${name}/index.yml > tmp
             mv tmp releases/${name}/index.yml
             rm -f releases/${name}/${name}-${version}.yml
-            git add releases/${name}/${name}-${version}.yml releases/${name}/index.yml 
+            git add releases/${name}/${name}-${version}.yml releases/${name}/index.yml
+            git commit -a ${NEXT_GIT_COMMIT_FLAGS}
+            NEXT_GIT_COMMIT_FLAGS='--amend -m "reset and cutting release ${version}"'
           fi
           
           echo "Current AWS config"
@@ -146,14 +149,15 @@ jobs:
           git add releases/${name}/index.yml
           RELEASE_FILE_NAME=releases/${name}/${name}-${version}.yml
           git add ${RELEASE_FILE_NAME}
+          # Note: if we had removed the previous release, then we amend the commit.
+          git commit -a ${NEXT_GIT_COMMIT_FLAGS}
           
           echo "Inspecting staged files to skip commit and push if there is no blob changes in the release" 
           if ! git diff --cached ${RELEASE_FILE_NAME} | grep sha1 ; then
-            echo "No sha1 found in diff in ${RELEASE_FILE_NAME}. No blob were modified. Skip the release"
+            echo "No sha1 found in diff in ${RELEASE_FILE_NAME}. No blob were modified. Skipping the git push"
             ls -al ${RELEASE_FILE_NAME}
             cat ${RELEASE_FILE_NAME}
           else
-            git commit -a -m "cutting release ${version}"
             echo "pushing changes to git repository"
             
             # Override any existing tag with same version. This may happen if only part of the renovate PRs were merged
