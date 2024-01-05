@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false # Make sure PAT_FOR_REBASE_WORKFLOW token is used,  See https://github.com/orgs/community/discussions/25702#discussioncomment-6313966
 
       - name: rebase all release branches
         env:
