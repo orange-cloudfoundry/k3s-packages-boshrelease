@@ -30,13 +30,13 @@ jobs:
           # Note: actions/checkout does not include local branches, see https://github.com/actions/checkout/issues/1017#issuecomment-1344861321
           # therefore we iterate on remote branches
           git branch -r 
-          RELEASE_BRANCHES=$(git branch -r --list "origin/release-*" | grep release)
+          RELEASE_BRANCHES=$(git branch -r --list "origin/release-*")
           for r in ${RELEASE_BRANCHES}; do
             BRANCH_WITHOUT_PREFIX=${r#/origin}
             git co ${BRANCH_WITHOUT_PREFIX}
             git pull --rebase origin ${BRANCH_WITHOUT_PREFIX}
             #git push --force ${remote_repo} HEAD:$r 
-          do
+          done
           
           
           
