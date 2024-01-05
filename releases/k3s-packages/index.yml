@@ -1,4 +1,2 @@
-builds:
-  325a9c39-a7c7-41c3-5b4b-e3794554bb46:
-    version: 1.24.17+k3s1
+builds: {}
 format-version: "2"
