@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # TODO: test use of the syntax token from https://github.com/actions/checkout/blob/b4ffde65f46336ab88eb53be808477a3936bae11/README.md?plain=1#L32-L42
+          # and remove basic auth in the remote_repo url below, reducing risks of leaking the token in logs
           persist-credentials: false # Make sure PAT_FOR_REBASE_WORKFLOW token is used,  See https://github.com/orgs/community/discussions/25702#discussioncomment-6313966
 
       - name: rebase all release branches
