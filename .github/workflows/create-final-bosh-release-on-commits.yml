@@ -1,5 +1,7 @@
 name: create-final-bosh-release
 
+permissions:
+  contents: write # allow git push to repo and the github release and its artefact
 on:
   push:
     branches:

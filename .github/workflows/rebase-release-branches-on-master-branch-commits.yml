@@ -1,5 +1,8 @@
 name: rebase-release-branches-on-master-branch-commits
 
+permissions:
+  contents: write # allow git push to repo and the github release and its artefact
+
 on:
   push:
     branches:

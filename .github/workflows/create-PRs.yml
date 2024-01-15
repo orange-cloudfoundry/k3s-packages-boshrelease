@@ -1,5 +1,8 @@
 name: create-PRs-based-on-release-branches
 
+permissions:
+  contents: write # allow git push to repo and the github release and its artefact
+
 on:
   workflow_dispatch:
 
