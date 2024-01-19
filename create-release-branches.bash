@@ -37,7 +37,8 @@ for ref in $(listK3sReleases) ; do
     git branch -d "$BRANCH_NAME"
   fi
   git checkout -b "$BRANCH_NAME"
-  sed -i.orig "s/tag: v.*/tag: v${v}.0/g" vendir.yml
+  INITIAL_VERSION="v${v}.0+k3s1" # if we just set 1.9.0 then renovate will not pick up 1.9.0+k3s1 and will wait until 1.9.1+k3s1
+  sed -i.orig "s/tag: v.*/tag: ${INITIAL_VERSION}/g" vendir.yml
   diff vendir.yml vendir.yml.orig
   rm vendir.yml.orig
   git add vendir.yml
