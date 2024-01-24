@@ -97,12 +97,12 @@ jobs:
           fi
       - name: Extract k9s version
         id: extract_version
-        uses: orange-cloudfoundry/extract-vendir-version-action@v0.2.0
+        uses: orange-cloudfoundry/extract-vendir-version-action@4e0e9300b0a7fe81a02536f631073c2accab9680 # v0.2.0
         with:
           library: "k3s-io/k3s"
       - name: create bosh final release
         id: create-bosh-release
-        uses: orange-cloudfoundry/create-bosh-release-action@v1.0.1
+        uses: orange-cloudfoundry/create-bosh-release-action@5193049587144e6a0eae076feef0d4270843068b # v1.0.1
         with:
           target_branch: ${{github.ref_name}}
           tag_name: ${{ steps.extract_version.outputs.version }}
