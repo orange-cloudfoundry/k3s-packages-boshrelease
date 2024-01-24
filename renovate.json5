@@ -19,7 +19,6 @@
     // don't run on renovate branches
     "$default",
     "/^release-.*/",  //regexp test syntax
-    "/^upstream-release-1\..*/"
     // See https://docs.renovatebot.com/configuration-options/#basebranches
     // baseBranches supports Regular Expressions that must begin and end with /
   ], //See also possible support for multiple base branches, one per K8S minor version https://docs.renovatebot.com/configuration-options/#basebranches
@@ -120,5 +119,14 @@
       datasourceTemplate: 'github-tags',
       versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$',
     },
+    {
+      fileMatch: [".github/workflows/.*\\.yml"],
+      "matchStrings": [
+        // For GitHub workflows: https://regex101.com/r/wjGoU0/2
+        "repo: (?<depName>[\\w\\d\\//\\-\\_]+)\\n\\s*tag:[\\s*|=]??\\\"?v(?<currentValue>[\\w\\d\\/\\-\\.\\_]+)\\\"?",
+      ],
+      versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$',
+      datasourceTemplate: 'github-tags'
+    }
   ],
 }
