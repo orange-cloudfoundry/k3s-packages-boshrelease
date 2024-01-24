@@ -14,11 +14,11 @@
     'manifests/**',
     'jobs/**',
   ],
-  automergeStrategy: "merge-commit", // use a merge commit so that generated release notes can list the merged PRs
+  automergeStrategy: 'merge-commit', // use a merge commit so that generated release notes can list the merged PRs
   baseBranches: [
     // don't run on renovate branches
-    "$default",
-    "/^release-.*/",  //regexp test syntax
+    '$default',
+    '/^release-.*/',  //regexp test syntax
     // See https://docs.renovatebot.com/configuration-options/#basebranches
     // baseBranches supports Regular Expressions that must begin and end with /
   ], //See also possible support for multiple base branches, one per K8S minor version https://docs.renovatebot.com/configuration-options/#basebranches
@@ -92,7 +92,6 @@
         'depName/kubernetes-kubectl', //override common labels for kubectl, as we have to scan kubernetes releases
       ],
       //separateMultipleMinor: true, // Pending merge of https://github.com/renovatebot/renovate/pull/24538 to be effective
-
     },
   ],
   customManagers: [
@@ -120,14 +119,17 @@
       versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$',
     },
     {
-      fileMatch: [".github/workflows/.*\\.yml"],
-      "matchStrings": [
+      customType: 'regex',
+      fileMatch: [
+        '.github/workflows/.*\\.yml',
+      ],
+      matchStrings: [
         // For GitHub workflows: https://regex101.com/r/wjGoU0/2
-        "repo: (?<depName>[\\w\\d\\//\\-\\_]+)\\n\\s*tag:[\\s*|=]??\\\"?v(?<currentValue>[\\w\\d\\/\\-\\.\\_]+)\\\"?",
+        'repo: (?<depName>[\\w\\d\\//\\-\\_]+)\\n\\s*tag:[\\s*|=]??\\"?v(?<currentValue>[\\w\\d\\/\\-\\.\\_]+)\\"?',
       ],
       versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$',
-      extractVersionTemplate: "^v?(?<version>.*)$",
-      datasourceTemplate: 'github-tags'
-    }
+      extractVersionTemplate: '^v?(?<version>.*)$',
+      datasourceTemplate: 'github-tags',
+    },
   ],
 }
