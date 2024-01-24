@@ -126,6 +126,7 @@
         "repo: (?<depName>[\\w\\d\\//\\-\\_]+)\\n\\s*tag:[\\s*|=]??\\\"?v(?<currentValue>[\\w\\d\\/\\-\\.\\_]+)\\\"?",
       ],
       versioningTemplate: 'regex:v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$',
+      extractVersionTemplate: "^v?(?<version>.*)$",
       datasourceTemplate: 'github-tags'
     }
   ],
