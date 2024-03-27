@@ -1,8 +1,8 @@
 k3s-images/k3s-airgap-images-amd64.tar.gz:
-  size: 200538615
-  object_id: 75c49b46-eda0-42f6-5a03-877b1c123fdf
-  sha: sha256:eae4d5528ab9e6fd370e1a6bce67a6f346a6a245a2433b14bff6664278911755
+  size: 187328962
+  object_id: 96cc3a5c-063a-420b-5d60-22aa8cf202da
+  sha: sha256:33143d8a015289540df4764b401a845d14021888bfae854232c5b6deba41d4c1
 k3s/k3s:
-  size: 64962560
-  object_id: 449a0bb9-9fcd-4487-4556-13dce6bd7fec
-  sha: sha256:de52d4e9403327467f8f355f6eef607a1ed6b48424fd24b78f68c55dcd2f4013
+  size: 63926272
+  object_id: 53f3e0af-bc57-4276-702b-120c7a488995
+  sha: sha256:61e6b90de00819f2f6fe0442fcff43add5424ef2553a1e1fafed6eaa88400658
