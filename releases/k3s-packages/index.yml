@@ -1,4 +1,6 @@
 builds:
+  2b11a4f2-9531-45c1-49a1-8867662e95c0:
+    version: 1.27.12+k3s1
   878cf9f3-d727-493e-6f37-2e5402d0118f:
     version: 1.27.10+k3s2
   a624b0da-ee7c-48d3-531f-91afcd52c827:
