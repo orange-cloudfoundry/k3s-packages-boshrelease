@@ -4,6 +4,7 @@ permissions:
   contents: write # allow git push to repo and the github release and its artefact
 
 on:
+  workflow_dispatch: # to allow manual trigger
   push:
     branches:
       - master
