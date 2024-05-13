@@ -21,6 +21,8 @@ builds:
     version: 1.27.16+k3s1
   878cf9f3-d727-493e-6f37-2e5402d0118f:
     version: 1.27.10+k3s2
+  91d90bfd-9cd3-4c6f-4d6a-c1eb62b43d42:
+    version: 1.30.0+k3s1
   8f75753e-72f7-44d8-5799-d6834c075e6e:
     version: 1.27.14+k3s1
   a624b0da-ee7c-48d3-531f-91afcd52c827:
