@@ -3,7 +3,7 @@
   extends: [
     'config:best-practices', //See https://docs.renovatebot.com/upgrade-best-practices/#use-the-configbest-practices-preset
     ':disableRateLimiting',
-    'github>orange-cloudfoundry/renovate-public-presets:boshreleases-default.json5'
+    'github>orange-cloudfoundry/renovate-public-presets:boshreleases-default.json5',
   ],
   enabledManagers: [
     'github-actions',
@@ -72,15 +72,15 @@
     },
     {
       description: 'Add common labels',
-      matchDepPatterns: [
-        '*',
-      ],
       addLabels: [
         'datasource/{{datasource}}',
         'depName/{{depNameSanitized}}',
         'manager/{{manager}}',
         'hasReleaseNotes/{{hasReleaseNotes}}',
         'target/{{baseBranch}}', // To easily filter PR on base branch, like all PR related to k3s 1.25
+      ],
+      matchDepNames: [
+        '/*/',
       ],
     },
     {
