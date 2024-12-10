@@ -1,4 +1,6 @@
 builds:
+  0bf75963-55ec-4cd6-7508-b1ad882ee1db:
+    version: 1.31.3+k3s1
   2b11a4f2-9531-45c1-49a1-8867662e95c0:
     version: 1.27.12+k3s1
   509922c7-4f2c-425d-4c62-95fa156b4c7b:
