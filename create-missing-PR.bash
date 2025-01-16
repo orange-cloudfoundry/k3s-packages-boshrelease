@@ -16,9 +16,9 @@ for branch in $(git --no-pager branch -r|grep -E "/release-[0-9.]*$");do
     echo "Creating label target/$release"
     gh label create "target/$release" --color 0020CC
   fi
-  echo "gh pr create --base master -t \"$release\" -b \"We use this PR to track changes related to K8S $release\" -l \"target/$release\" -l k3s-base --head $release"
+  echo "gh pr create --base master -t \"$release\" -b \"We use this PR to track changes related to K8S $release\" -l \"target/$release\" -l \"DO NOT MERGE\" -l k3s-base --head $release"
   # We ignore PR creation errors
-  gh pr create --base master -t "$release" -b "We use this PR to track changes related to K8S $release" -l "target/$release" -l k3s-base --head $release
+  gh pr create --base master -t "$release" -b "We use this PR to track changes related to K8S $release" -l "target/$release" -l "DO NOT MERGE" -l k3s-base --head $release
 done
 
 gh pr list -l k3s-base
