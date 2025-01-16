@@ -5,7 +5,7 @@
 # This script creates new release branches for all available release branches in k3s-io/k3s repo starting from current version in vendir.yml from master branch.
 #
 # When PUSH_OPTIONS=true, it also recreates all existing release branches from master branch
-
+gh version
 PUSH_OPTIONS=""
 if [ "$FORCE_PUSH" = "true" ] ;then
   PUSH_OPTIONS="$PUSH_OPTIONS --force"
