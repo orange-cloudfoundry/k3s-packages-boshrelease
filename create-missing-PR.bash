@@ -12,7 +12,11 @@ for branch in $(git --no-pager branch -r|grep -E "/release-[0-9.]*$");do
   echo "Processing $branch"
   release=$(echo $branch|cut -d'/' -f2)
   branch_head_ref=$(echo $branch|sed "s@/@:@g")
-  echo "gh pr create --base master -t \"$release\" -b \"We use this PR to track changes related to K8S $release\" -l \"target/$release\" -l k3s-base--head $release"
+  if [ "$(gh label list --search "target/"|grep "target/$release"|wc -l)" -eq 0 ];then
+    echo "Creating label target/$release"
+    gh label create "target/$release" --color 0020CC
+  fi
+  echo "gh pr create --base master -t \"$release\" -b \"We use this PR to track changes related to K8S $release\" -l \"target/$release\" -l k3s-base --head $release"
   # We ignore PR creation errors
   gh pr create --base master -t "$release" -b "We use this PR to track changes related to K8S $release" -l "target/$release" -l k3s-base --head $release
 done
