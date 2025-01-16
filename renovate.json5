@@ -80,7 +80,7 @@
         'target/{{baseBranch}}', // To easily filter PR on base branch, like all PR related to k3s 1.25
       ],
       matchDepNames: [
-        '/*/',
+        '*',
       ],
     },
     {
