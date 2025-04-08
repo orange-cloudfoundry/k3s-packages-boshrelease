@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
           # TODO: test use of the syntax token from https://github.com/actions/checkout/blob/b4ffde65f46336ab88eb53be808477a3936bae11/README.md?plain=1#L32-L42
