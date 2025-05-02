@@ -2,8 +2,8 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - githubRelease:
-      tag: v1.30.11+k3s1
-      url: https://api.github.com/repos/k3s-io/k3s/releases/208255896
+      tag: v1.30.12+k3s1
+      url: https://api.github.com/repos/k3s-io/k3s/releases/216013478
     path: k3s-io/k3s
   path: src/github.com
 kind: LockConfig
