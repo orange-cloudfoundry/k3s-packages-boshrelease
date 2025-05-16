@@ -3,3 +3,4 @@ name: k3s
 dependencies: []
 files:
 - k3s/k3s 
+- etcdctl/etcdctl.tar.gz
