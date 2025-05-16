@@ -1,3 +1,7 @@
+etcdctl/etcdctl.tar.gz:
+  size: 20927601
+  object_id: f6b44476-1327-49b0-4542-733aeb8062bd
+  sha: sha256:adddda4b06718e68671ffabff2f8cee48488ba61ad82900e639d108f2148501c
 k3s-images/k3s-airgap-images-amd64.tar.gz:
   size: 173004478
   object_id: 451347c7-d0fa-4778-479d-d7f927b2030b
