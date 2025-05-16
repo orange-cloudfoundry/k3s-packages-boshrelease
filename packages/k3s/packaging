@@ -7,6 +7,7 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
+cp ${BOSH_COMPILE_TARGET}/etcdctl/etcdctl.tar.gz ${BOSH_INSTALL_TARGET}/etcdctl.tar.gz
 
 
 cp ${BOSH_COMPILE_TARGET}/k3s/k3s ${BOSH_INSTALL_TARGET}/k3s
