@@ -28,7 +28,6 @@ function addBlobOnChecksumChange() {
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s k3s/k3s
 addBlobOnChecksumChange src/github.com/k3s-io/k3s/k3s-airgap-images-amd64.tar.gz k3s-images/k3s-airgap-images-amd64.tar.gz
 
-addBlobOnChecksumChange src/github.com/etcd-io/etcd/etcd-v3.5.21-linux-amd64.tar.gz etcdctl/etcdctl.tar.gz
 
 # Inspired by https://github.com/orange-cloudfoundry/bosh-release-action/blob/8732ff085712d9980fc66e50892cb9c3d7a3f884/entrypoint.sh#L48-L58
 function configureS3BlobStore() {
