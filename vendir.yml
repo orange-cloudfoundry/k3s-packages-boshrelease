@@ -5,7 +5,6 @@ minimumRequiredVersion: 0.34.0
 directories:
 # doc: https://carvel.dev/vendir/docs/v0.35.x/vendir-spec/
 
-
 - path: src/github.com
   contents:
   - path: k3s-io/k3s
@@ -17,17 +16,5 @@ directories:
       # includePaths at path level. Using includePaths downloads all assets and filter after.
       - "k3s"
       - "k3s-airgap-images-amd64.tar.gz"
-    # includePaths: # includes paths specify what should be included. by default all paths are included (optional)
-
-
-
-  - path: etcd-io/etcd
-    githubRelease:
-      slug: etcd-io/etcd 
-      tag: v3.5.21
-      disableAutoChecksumValidation: true
-      assetNames: # only download specific assets (optional; v0.12.0+). We use assetNames inside githubRelease instead of
-      # includePaths at path level. Using includePaths downloads all assets and filter after.
-      - "etcd-v3.5.21-linux-amd64.tar.gz"
     # includePaths: # includes paths specify what should be included. by default all paths are included (optional)
 
