@@ -5,9 +5,5 @@ directories:
       tag: v1.30.12+k3s1
       url: https://api.github.com/repos/k3s-io/k3s/releases/216013478
     path: k3s-io/k3s
-  - githubRelease:
-      tag: v3.5.21
-      url: https://api.github.com/repos/etcd-io/etcd/releases/208822190
-    path: etcd-io/etcd
   path: src/github.com
 kind: LockConfig
