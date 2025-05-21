@@ -1,6 +1,6 @@
 name: k3s-packages
 version: 1.28.15+k3s1
-commit_hash: 949844d
+commit_hash: 66d9fe9
 uncommitted_changes: true
 jobs:
 - name: k3s-packages
@@ -12,9 +12,9 @@ jobs:
   - k3s-images
 packages:
 - name: k3s
-  version: 804444704b07add66a8b6502d413195c8eea4b652f6187b9e9e87c71c35fa1d1
-  fingerprint: 804444704b07add66a8b6502d413195c8eea4b652f6187b9e9e87c71c35fa1d1
-  sha1: sha256:c49f6c015208d7c134a8fa545260ffafc32f92c041ef96fd2e7e71f4917f4593
+  version: f29ce0b2239ec29678412c1a418eb8e844d28ac98166d03c07d2c4c78cbce3eb
+  fingerprint: f29ce0b2239ec29678412c1a418eb8e844d28ac98166d03c07d2c4c78cbce3eb
+  sha1: sha256:b89d3535e3e38d1ae17a1ce6afcf1f243a492e264a0050c3e7dde6df4aa1c761
   dependencies: []
 - name: k3s-images
   version: 8ecb2e0411a458f8ff48c490c49cc3bbdea0c47c3f4e57879666635edd7b7260
