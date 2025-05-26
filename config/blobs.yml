@@ -3,10 +3,10 @@ etcdctl/etcdctl.tar.gz:
   object_id: d566fbdf-c01c-4627-5ef0-4d29e8f209a3
   sha: sha256:adddda4b06718e68671ffabff2f8cee48488ba61ad82900e639d108f2148501c
 k3s-images/k3s-airgap-images-amd64.tar.gz:
-  size: 186444072
-  object_id: 7adfe23d-1cba-4b22-4f64-4620e0953f92
-  sha: sha256:2232ff35c3fbe272a7332bc94b083acb04c25a1fc2389d9b48b3621a4fa2f94f
+  size: 186444084
+  object_id: 9d6cf00d-697f-4865-483e-cf4fc9ff9c1a
+  sha: sha256:3bafce29581d20ed70d03d28f378018ea8fcdf3ee8d1cc611433f22305cb44b8
 k3s/k3s:
-  size: 69398680
-  object_id: 8a67ebd5-f367-49ae-5e8d-c54948bf8edd
-  sha: sha256:dbdb80d74fa4234b574557c3d50d42b8781e147e26642d0393ab7fa87f630f8c
+  size: 70193304
+  object_id: 04f8d2c6-2395-4ab1-5678-ee0c9eb1e720
+  sha: sha256:e972a6b6d7a12f50ad3ea3bd58598d4ca059148c0fbf80f983cb4684069af885
