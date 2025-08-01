@@ -1,0 +1,27 @@
+name: k3s-packages
+version: 1.32.7+k3s1
+commit_hash: f12e635
+uncommitted_changes: true
+jobs:
+- name: k3s-packages
+  version: 7f83fc5d18ece0c37ad93bd5e7748024dea8621370a746caeeb409c8a7849ef4
+  fingerprint: 7f83fc5d18ece0c37ad93bd5e7748024dea8621370a746caeeb409c8a7849ef4
+  sha1: sha256:d57714f4b385da24f2b5867bbcf64e578c8c49c913d6e5299465428b68305306
+  packages:
+  - k3s
+  - k3s-images
+packages:
+- name: k3s
+  version: f7b4dedce8e87167fc8fbfd2a421e7f9eb59e4fe6aab2cfe6abd0edfcdcb6e89
+  fingerprint: f7b4dedce8e87167fc8fbfd2a421e7f9eb59e4fe6aab2cfe6abd0edfcdcb6e89
+  sha1: sha256:6f78f118603670831269e138678d6e9847b2d8aefef74537e7d54fc367a1955f
+  dependencies: []
+- name: k3s-images
+  version: de99192481ebda07e700bb4ba7086969f1df12add58b7cbf066ffd1358f7f010
+  fingerprint: de99192481ebda07e700bb4ba7086969f1df12add58b7cbf066ffd1358f7f010
+  sha1: sha256:aba2c688b841648870d947c4e6404756a19234fa6ef6501893efade5731ab135
+  dependencies: []
+license:
+  version: cf0ca1fe65dee9607c7bb9460a3f20835e582cbb7f5b2c3625fba2e21d7e91b9
+  fingerprint: cf0ca1fe65dee9607c7bb9460a3f20835e582cbb7f5b2c3625fba2e21d7e91b9
+  sha1: sha256:d548654c52c6aadc88a1cf194e1424f88a2595e1c13d764b918be201e258bf4f
