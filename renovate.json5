@@ -45,7 +45,7 @@
         'k3s-io/k3s',
       ],
       separateMinorPatch: true,
-      versioning: 'semver', // When versioning is set to semver, it ignores suffix like '-k3s2'. But when disabled, bosh release creation fails for release like k3s-packages-1.30.14+k3s2.yml
+      //versioning: 'semver', // do not set versioning to semver, otherwise suffix like '-k3s2' are ignored
       //separateMultipleMinor: true, // Pending merge of https://github.com/renovatebot/renovate/pull/24538 to be effective
     },
     {
