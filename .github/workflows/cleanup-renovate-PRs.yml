@@ -1,0 +1,23 @@
+name: cleanup-renovate-prs
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_push:
+        description: 'Force recreation of release branches from min version'
+        required: true
+        type: boolean
+        default: false
+  schedule:
+    - cron: "00 12 * * 1-5" # “At noon on week day.” https://crontab.guru/#30_10_*_*_1
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # GH cli is already pre-install, see https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
+      - name: create-missing-branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./cleanup-renovate-PRs.bash
+
