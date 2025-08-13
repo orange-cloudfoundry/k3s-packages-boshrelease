@@ -14,8 +14,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0
+
       # GH cli is already pre-install, see https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows
-      - name: create-missing-branches
+      - name: delete-abandoned-renovate-prs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
