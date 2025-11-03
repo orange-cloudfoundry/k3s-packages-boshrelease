@@ -1,5 +1,6 @@
 name: cleanup-renovate-prs
-
+permissions:
+  pull-requests: write
 on:
   workflow_dispatch:
     inputs:
