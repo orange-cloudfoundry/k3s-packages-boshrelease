@@ -16,7 +16,7 @@
     'jobs/**',
   ],
   automergeStrategy: 'merge-commit', // use a merge commit so that generated release notes can list the merged PRs
-  baseBranches: [
+  baseBranchPatterns: [
     // don't run on renovate branches
     '$default',
     // current k3s version: https://github.com/k3s-io/k3s/releases
