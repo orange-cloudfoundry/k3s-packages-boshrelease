@@ -1,28 +1,54 @@
 builds:
+  0aafc219-e8da-4172-75a9-3c845fcb64e3:
+    version: 1.30.5+k3s1
   0cd88bf5-54c4-4664-4f7f-3d16d9ff1244:
     version: 1.28.6+k3s2
+  174e6152-ffc9-4a79-7d8e-ebdaa387e69d:
+    version: 1.30.7+k3s1
+  1a2f65e5-1bd7-455d-4bc3-22e93b1c41b9:
+    version: 1.30.9+k3s1
   2756dd40-ea44-4018-6ba8-06d5c0a98fa7:
     version: 1.27.15+k3s1
+  293b3199-feed-4a91-5f34-65cfff19015c:
+    version: 1.30.6+k3s1
   2b11a4f2-9531-45c1-49a1-8867662e95c0:
     version: 1.27.12+k3s1
+  2daa496b-092c-440d-4fc5-fc91cb00c96c:
+    version: 1.30.10+k3s1
   32759e8e-2db2-48c0-432e-d2a0e2b30d3b:
     version: 1.28.9+k3s1
+  353326fd-57a3-4d01-4e31-591102d782b5:
+    version: 1.30.14+k3s1
+  3e250f68-ec6d-4716-6712-145a4b5e64b3:
+    version: 1.30.1+k3s1
   41aa25b0-be21-418e-6f40-eef17f0f6b69:
     version: 1.28.14+k3s1
+  47447b81-37f9-4612-589c-1544d8a48b24:
+    version: 1.30.13+k3s1
   4bbb143b-a614-4837-6e11-d5a8172a300e:
     version: 1.28.10+k3s1
   509922c7-4f2c-425d-4c62-95fa156b4c7b:
     version: 1.26.13+k3s2
+  54a67b68-0153-46d7-5ab2-d4ef18fbc9cb:
+    version: 1.30.8+k3s1
+  64fee257-ba0b-48a2-5dc4-3c8bd1a0b0ac:
+    version: 1.30.3+k3s1
   71609ef9-4416-418d-6ae4-bf2f24b5601c:
     version: 1.28.12+k3s1
-  82ea0a4d-c1ce-44c2-789a-ea5289e43836:
-    version: 1.28.13+k3s1
   71770efe-b5a0-4a05-5440-aa48bcb0c21b:
     version: 1.27.16+k3s1
+  77adde82-bed0-40e0-69a2-ab635865107d:
+    version: 1.30.4+k3s1
+  82ea0a4d-c1ce-44c2-789a-ea5289e43836:
+    version: 1.28.13+k3s1
   878cf9f3-d727-493e-6f37-2e5402d0118f:
     version: 1.27.10+k3s2
   8f75753e-72f7-44d8-5799-d6834c075e6e:
     version: 1.27.14+k3s1
+  91d90bfd-9cd3-4c6f-4d6a-c1eb62b43d42:
+    version: 1.30.0+k3s1
+  9c0e1d8f-90ee-4d21-6783-4c992f75a2d6:
+    version: 1.30.11+k3s1
   a624b0da-ee7c-48d3-531f-91afcd52c827:
     version: 1.24.17+k3s1
   b669418d-8c87-4ce8-5fb1-4f058941b71e:
@@ -31,16 +57,22 @@ builds:
     version: 1.26.12+k3s1
   bef13429-2dd0-42a3-446b-57a656855b46:
     version: 1.25.16+k3s4
+  c17d8e89-f13a-417e-52e0-a8eb614efce4:
+    version: 1.30.12+k3s1
   c55ea0d8-fe2e-48a5-540a-dc0adc375bad:
     version: 1.27.11+k3s1
   c5ec44b7-a701-4a09-7a00-2576446212c9:
     version: 1.27.9+k3s1
+  cc625bcd-0b7e-44d6-44c6-fd22dae6762e:
+    version: 1.30.2+k3s1
   d5301153-ef18-4c35-46f1-7cf3d832147e:
     version: 1.26.15+k3s1
   d9b8badb-8915-4eaa-5cf0-1d844414d988:
     version: 1.28.5+k3s1
   de4abe9e-1cc3-4aaa-40e6-cd6f32d27c98:
     version: 1.28.8+k3s1
+  e8f74ac4-d18a-4b46-60e9-3ce12e4f5d88:
+    version: 1.30.14+k3s2
   f5bf09ca-1bd7-4e3e-7beb-1c16b58e166d:
     version: 1.26.14+k3s1
   f5d2491a-0e20-4737-6730-d259e6bef2d5:
