@@ -99,7 +99,7 @@ jobs:
           if [ -d blobs ];then # The blobs dir is only present when a blob is modified or has not yet been published.
             tree -s blobs
           fi
-      - name: Extract k9s version
+      - name: Extract k3s version
         id: extract_version
         uses: orange-cloudfoundry/extract-vendir-version-action@7f7812b8cd8e253c26760f52ac63100712fe32af # v0.5.0
         with:
