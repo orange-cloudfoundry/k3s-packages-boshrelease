@@ -15,10 +15,12 @@ builds:
     version: 1.26.13+k3s2
   71609ef9-4416-418d-6ae4-bf2f24b5601c:
     version: 1.28.12+k3s1
-  82ea0a4d-c1ce-44c2-789a-ea5289e43836:
-    version: 1.28.13+k3s1
   71770efe-b5a0-4a05-5440-aa48bcb0c21b:
     version: 1.27.16+k3s1
+  7be4993d-ca4e-4c71-5e93-78cbc643f4ab:
+    version: 1.37.0+k3s1
+  82ea0a4d-c1ce-44c2-789a-ea5289e43836:
+    version: 1.28.13+k3s1
   878cf9f3-d727-493e-6f37-2e5402d0118f:
     version: 1.27.10+k3s2
   8f75753e-72f7-44d8-5799-d6834c075e6e:
@@ -31,6 +33,8 @@ builds:
     version: 1.26.12+k3s1
   bef13429-2dd0-42a3-446b-57a656855b46:
     version: 1.25.16+k3s4
+  c444d5fd-af5f-49ea-62d2-8dd8578c0c27:
+    version: 1.37.1+k3s1
   c55ea0d8-fe2e-48a5-540a-dc0adc375bad:
     version: 1.27.11+k3s1
   c5ec44b7-a701-4a09-7a00-2576446212c9:
